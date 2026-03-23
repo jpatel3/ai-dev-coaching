@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaimin Patel — AI Development Coaching</title>
+  <meta name="description" content="Learn to build software faster with AI tools. Hands-on coaching from an experienced developer who ships production code with AI every day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --text: #1a1a2e;
+      --text-secondary: #555;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-light: #eff6ff;
+      --border: #e5e7eb;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* Sections */
+    section { padding: 100px 24px; }
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    /* Hero */
+    .hero {
+      padding-top: 160px;
+      padding-bottom: 100px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      max-width: 720px;
+      margin: 0 auto 24px;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .cta-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+    }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* What You'll Learn */
+    .topics { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .section-desc {
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin-bottom: 48px;
+      font-size: 1.05rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--accent); }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+    .card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+    .card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+
+    /* Formats */
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .format-card {
+      padding: 36px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      position: relative;
+    }
+    .format-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .format-card.featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .format-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 6px; }
+    .format-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 16px 0;
+    }
+    .format-price span { font-size: 0.9rem; font-weight: 400; color: var(--text-secondary); }
+    .format-features { list-style: none; margin-bottom: 28px; }
+    .format-features li {
+      padding: 8px 0;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .format-features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .format-card .btn { width: 100%; justify-content: center; }
+
+    /* About */
+    .about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-text h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; }
+    .about-text p { color: var(--text-secondary); margin-bottom: 16px; font-size: 1.02rem; }
+    .about-visual {
+      background: linear-gradient(135deg, var(--accent-light), #e0e7ff);
+      border-radius: var(--radius);
+      padding: 48px;
+      text-align: center;
+    }
+    .about-visual .initials {
+      width: 100px;
+      height: 100px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 auto 24px;
+    }
+    .about-visual h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 4px; }
+    .about-visual p { color: var(--text-secondary); font-size: 0.95rem; }
+
+    /* Contact / CTA */
+    .contact { text-align: center; }
+    .contact .section-title { max-width: 600px; margin: 0 auto 16px; }
+    .contact .section-desc { margin: 0 auto 40px; }
+
+    /* Form */
+    .contact-form {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .form-row { margin-bottom: 20px; }
+    .form-row label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: var(--surface);
+      transition: border-color 0.2s;
+    }
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+    .form-row textarea { resize: vertical; min-height: 100px; }
+    .form-submit { text-align: center; }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px;
+      background: var(--accent-light);
+      border-radius: var(--radius);
+      margin-top: 20px;
+    }
+    .form-success h3 { color: var(--accent); margin-bottom: 8px; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .about-content { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { gap: 20px; }
+      .formats-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+      section { padding: 64px 20px; }
+      .hero { padding-top: 120px; padding-bottom: 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">Jaimin Patel</a>
+      <ul class="nav-links">
+        <li><a href="#topics">What You'll Learn</a></li>
+        <li><a href="#formats">Pricing</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Get Started</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">Now accepting new clients</div>
+      <h1>Ship better software, faster — with AI</h1>
+      <p>Hands-on coaching for developers and teams who want to integrate AI tools into their real workflow, not just play with demos.</p>
+      <div class="cta-group">
+        <a href="#contact" class="btn btn-primary">Book a Session</a>
+        <a href="#topics" class="btn btn-secondary">See What You'll Learn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You'll Learn -->
+  <section class="topics" id="topics">
+    <div class="container">
+      <div class="section-label">What You'll Learn</div>
+      <h2 class="section-title">Practical AI skills for working developers</h2>
+      <p class="section-desc">No hype, no theory dumps. Every session is focused on techniques you can use in your actual projects starting the same day.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon">&#9000;</div>
+          <h3>AI-Assisted Coding</h3>
+          <p>Use tools like Claude Code, Cursor, and GitHub Copilot to write, refactor, and debug production code with confidence.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#9881;</div>
+          <h3>Workflow Integration</h3>
+          <p>Build AI into your daily workflow — from commit messages to code reviews, testing, and documentation.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128640;</div>
+          <h3>Prompt Engineering</h3>
+          <p>Write prompts that get the results you want on the first try. Learn to give AI the right context, constraints, and examples.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128736;</div>
+          <h3>Building with AI APIs</h3>
+          <p>Build AI-powered features into your own applications using Claude API, tool use, and agent patterns.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128101;</div>
+          <h3>Team Adoption</h3>
+          <p>Strategies for rolling out AI tools across your team — what works, what doesn't, and how to measure impact.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">&#128218;</div>
+          <h3>Custom Topics</h3>
+          <p>Have a specific challenge? Sessions can be tailored to your stack, your codebase, and your goals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formats & Pricing -->
+  <section class="formats-section" id="formats">
+    <div class="container">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Flexible formats to fit your needs</h2>
+      <p class="section-desc">Whether you're an individual developer or a team lead, there's a format that works.</p>
+      <div class="formats-grid">
+        <div class="format-card">
+          <h3>Discovery Call</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">30-minute intro call to understand your goals</p>
+          <div class="format-price">Free</div>
+          <ul class="format-features">
+            <li>Understand your current workflow</li>
+            <li>Identify highest-impact areas</li>
+            <li>Get a personalized learning plan</li>
+            <li>No commitment required</li>
+          </ul>
+          <a href="#contact" class="btn btn-secondary">Book a Call</a>
+        </div>
+        <div class="format-card featured">
+          <h3>1-on-1 Coaching</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Hands-on, pair-programming style sessions</p>
+          <div class="format-price">$150 <span>/ hour</span></div>
+          <ul class="format-features">
+            <li>Work on your actual codebase</li>
+            <li>Live pair programming with AI tools</li>
+            <li>Session recording included</li>
+            <li>Follow-up resources & notes</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+        </div>
+        <div class="format-card">
+          <h3>Team Workshop</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">Half-day workshop for engineering teams</p>
+          <div class="format-price">$800 <span>/ session</span></div>
+          <ul class="format-features">
+            <li>Up to 8 participants</li>
+            <li>Customized to your tech stack</li>
+            <li>Hands-on exercises</li>
+            <li>Team playbook & best practices doc</li>
+          </ul>
+          <a href="#contact" class="btn btn-secondary">Inquire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <div class="section-label">About</div>
+          <h2>I ship production code with AI every day</h2>
+          <p>I'm a software developer who has fully integrated AI into my development workflow — from writing features and debugging, to code reviews and architecture planning.</p>
+          <p>I've helped developers ranging from beginners to senior engineers level up their AI-assisted development skills. My approach is practical: we work on real code, in real projects, solving real problems.</p>
+          <p>Whether you're trying to figure out how to get started with AI coding tools or you want to go deeper with agents and API integrations, I can help you get there faster.</p>
+        </div>
+        <div class="about-visual">
+          <div class="initials">JP</div>
+          <h3>Jaimin Patel</h3>
+          <p>Software Developer & AI Coaching</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-label">Get Started</div>
+      <h2 class="section-title">Ready to level up your development workflow?</h2>
+      <p class="section-desc">Fill out the form below and I'll get back to you within 24 hours to schedule your session.</p>
+
+      <form class="contact-form" id="contactForm" action="https://formsubmit.co/jaimin9999@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New AI Coaching Inquiry">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="">
+        <input type="text" name="_honey" style="display:none">
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Your name">
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@company.com">
+        </div>
+        <div class="form-row">
+          <label for="interest">What are you interested in?</label>
+          <select id="interest" name="interest" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="discovery">Discovery Call (Free)</option>
+            <option value="coaching">1-on-1 Coaching</option>
+            <option value="workshop">Team Workshop</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="message">Tell me a bit about what you're working on</label>
+          <textarea id="message" name="message" placeholder="What's your tech stack? What AI tools have you tried? What do you want to get better at?"></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <h3>Message sent!</h3>
+          <p>I'll get back to you within 24 hours.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Jaimin Patel. All rights reserved. &nbsp;|&nbsp; <a href="mailto:jaimin9999@gmail.com">jaimin9999@gmail.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Form handling
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          // Fallback to mailto
+          window.location.href = 'mailto:jaimin9999@gmail.com?subject=AI Coaching Inquiry&body=' +
+            encodeURIComponent('Name: ' + form.name.value + '\nInterest: ' + form.interest.value + '\n\n' + form.message.value);
+        }
+      } catch (err) {
+        window.location.href = 'mailto:jaimin9999@gmail.com?subject=AI Coaching Inquiry&body=' +
+          encodeURIComponent('Name: ' + form.name.value + '\nInterest: ' + form.interest.value + '\n\n' + form.message.value);
+      }
+    });
+  </script>
+
+</body>
+</html>
