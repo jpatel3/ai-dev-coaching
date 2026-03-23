@@ -486,7 +486,7 @@
       <form class="contact-form" id="contactForm" action="https://formsubmit.co/jaimin9999@gmail.com" method="POST">
         <input type="hidden" name="_subject" value="New AI Coaching Inquiry">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="">
+        <input type="hidden" name="_next" value="https://jpatel3.github.io/ai-dev-coaching/?submitted=true">
         <input type="text" name="_honey" style="display:none">
         <div class="form-row">
           <label for="name">Name</label>
@@ -528,6 +528,14 @@
   </footer>
 
   <script>
+    // Show success on redirect back
+    if (window.location.search.includes('submitted=true')) {
+      const form = document.getElementById('contactForm');
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('contact').scrollIntoView();
+    }
+
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
